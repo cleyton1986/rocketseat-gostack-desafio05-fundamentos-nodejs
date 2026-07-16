@@ -14,7 +14,8 @@ transactionRouter.get('/', (request, response) => {
 
     return response.json({ transactions, balance });
   } catch (err) {
-    return response.status(400).json({ error: err.message });
+    const message = err instanceof Error ? err.message : 'Unknown error';
+    return response.status(400).json({ error: message });
   }
 });
 
@@ -34,7 +35,8 @@ transactionRouter.post('/', (request, response) => {
 
     return response.json(transaction);
   } catch (err) {
-    return response.status(400).json({ error: err.message });
+    const message = err instanceof Error ? err.message : 'Unknown error';
+    return response.status(400).json({ error: message });
   }
 });
 
